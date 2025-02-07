@@ -185,6 +185,36 @@
       margin-bottom: 10px;
       color: #003f7f;
     }
+    /* Added: Private Newsletter Service */
+    .service.newsletter {
+      background: #e7f0ff;
+    }
+    /* Interactive Assessment Section */
+    #assessment {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background: #fafafa;
+      margin-bottom: 40px;
+    }
+    #assessment input[type="number"] {
+      width: 80%;
+      max-width: 300px;
+      margin: 10px 0;
+    }
+    #assessment button {
+      background: #0057B8;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #assessment button:hover {
+      background: #003f7f;
+    }
     /* Testimonials Carousel */
     .carousel {
       position: relative;
@@ -333,7 +363,19 @@
           <h3>Online Resources</h3>
           <p>Access guides, blog posts, and video tutorials that break down the recruitment process step by step.</p>
         </div>
+        <div class="service newsletter">
+          <h3>Private Newsletter Access</h3>
+          <p>Onboarding clients receive exclusive access to our private Mailchimp newsletter featuring recruitment tips, industry insights, and success stories.</p>
+        </div>
       </div>
+    </section>
+    <!-- Interactive Assessment Section -->
+    <section id="assessment">
+      <h2 class="section-title">Assess Your Recruitment Readiness</h2>
+      <p>Enter your 2k erg time in seconds to get a quick recruitment score (Ideal = 380 seconds):</p>
+      <input type="number" id="ergTime" placeholder="Enter erg time in seconds" required>
+      <button id="calculateScore">Calculate Score</button>
+      <p id="scoreResult"></p>
     </section>
     <!-- Testimonials Section -->
     <section id="testimonials">
@@ -433,6 +475,19 @@
       currentIndex = (currentIndex + 1) % totalItems;
       showItem(currentIndex);
     }, 5000);
+
+    // Interactive Recruitment Assessment Tool
+    document.getElementById('calculateScore').addEventListener('click', function() {
+      var ergTime = parseFloat(document.getElementById('ergTime').value);
+      if (!isNaN(ergTime) && ergTime > 0) {
+        var idealTime = 380; // Ideal 2k erg time in seconds (6:20)
+        var score = (idealTime / ergTime) * 100;
+        score = Math.round(score);
+        document.getElementById('scoreResult').innerText = "Your recruitment score is: " + score;
+      } else {
+        document.getElementById('scoreResult').innerText = "Please enter a valid erg time.";
+      }
+    });
   </script>
 </body>
 </html>
