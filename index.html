@@ -389,7 +389,7 @@
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#contact">Contact</a></li>
         <!-- Updated Digital Guide Link -->
-        <li><a href="./guide.html">Digital Guide</a></li>
+        <li><a href="guide.html">Digital Guide</a></li>
       </ul>
     </div>
   </nav>
@@ -416,7 +416,7 @@
         <h2 class="section-title">Digital Guide</h2>
         <p>Discover our comprehensive digital guide to improving your 2K erg time! Perfect for rowers at all levels looking to refine their technique and boost performance. Click below to learn more and purchase your copy today.</p>
         <div style="text-align:center; margin-top:20px;">
-          <a href="./guide.html" class="btn" style="padding: 14px 28px; background: #0057B8; color: #fff; text-decoration: none; border-radius: 5px;">View Digital Guide</a>
+          <a href="guide.html" class="btn" style="padding: 14px 28px; background: #0057B8; color: #fff; text-decoration: none; border-radius: 5px;">View Digital Guide</a>
         </div>
       </section>
       
@@ -520,15 +520,21 @@
       menuToggle.setAttribute('aria-expanded', expanded);
     });
     
-    // Smooth Scrolling for Nav Links
+    // Smooth Scrolling for Nav Links (only intercepts links starting with "#")
     document.querySelectorAll('nav a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetID = this.getAttribute('href').substring(1);
-        document.getElementById(targetID).scrollIntoView({ behavior: 'smooth' });
-        if (window.innerWidth < 768) {
-          navMenu.classList.remove('open');
-          menuToggle.setAttribute('aria-expanded', false);
+        const href = this.getAttribute('href');
+        if(href.startsWith("#")) {
+          e.preventDefault();
+          const targetID = href.substring(1);
+          const targetElement = document.getElementById(targetID);
+          if(targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (window.innerWidth < 768) {
+            navMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', false);
+          }
         }
       });
     });
