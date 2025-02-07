@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nate Fineman - Rowing Recruitment Mentor</title>
   <style>
-    /* Reset */
+    /* Reset and basic styling */
     * {
       margin: 0;
       padding: 0;
@@ -29,8 +29,8 @@
       text-align: center;
     }
     header h1 {
-      margin-bottom: 10px;
       font-size: 2.2rem;
+      margin-bottom: 10px;
     }
     header p {
       font-size: 1.1rem;
@@ -69,7 +69,7 @@
       color: #fff;
       cursor: pointer;
     }
-    /* Main Content */
+    /* Container */
     .container {
       max-width: 1100px;
       margin: 20px auto;
@@ -236,13 +236,13 @@
     <!-- Contact Section -->
     <section id="contact">
       <h2 class="section-title">Contact Me</h2>
-      <form action="#" method="post">
+      <form action="https://formspree.io/f/mldglbzp" method="POST">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your full name">
+        <input type="text" id="name" name="name" placeholder="Your full name" required>
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Your email address">
+        <input type="email" id="email" name="email" placeholder="Your email address" required>
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="How can I help you?"></textarea>
+        <textarea id="message" name="message" rows="5" placeholder="How can I help you?" required></textarea>
         <button type="submit">Send Message</button>
       </form>
     </section>
@@ -251,15 +251,11 @@
     <p>&copy; 2025 Nate Fineman - Rowing Recruitment Mentor. All rights reserved.</p>
   </footer>
   <script>
-    // Responsive Navigation Toggle
+    // Mobile Navigation Toggle
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     menuToggle.addEventListener('click', () => {
-      if (navMenu.style.display === 'flex') {
-        navMenu.style.display = 'none';
-      } else {
-        navMenu.style.display = 'flex';
-      }
+      navMenu.style.display = (navMenu.style.display === 'flex') ? 'none' : 'flex';
     });
 
     // Smooth Scrolling for Nav Links
