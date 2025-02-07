@@ -5,6 +5,7 @@
   <meta name="description" content="Nate Fineman - Rowing Recruitment Mentor: Helping rowers get recruited to top colleges and teams.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nate Fineman - Rowing Recruitment Mentor</title>
+  <meta name="theme-color" content="#0057B8">
   
   <!-- Favicon -->
   <link rel="icon" href="https://via.placeholder.com/32" type="image/png">
@@ -22,7 +23,7 @@
   <meta name="twitter:description" content="Helping rowers get recruited to top colleges and teams.">
   <meta name="twitter:image" content="https://i.ytimg.com/vi/2VsA6l3FQAg/maxresdefault.jpg">
   
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD Structured Data with expanded social profiles -->
   <script type="application/ld+json">
   {
     "@context": "http://schema.org",
@@ -30,15 +31,36 @@
     "name": "Nate Fineman - Rowing Recruitment Mentor",
     "url": "https://natefineman.github.io/",
     "logo": "https://via.placeholder.com/150",
-    "sameAs": []
+    "sameAs": [
+      "https://instagram.com/nathanfineman",
+      "https://www.linkedin.com/in/nate-fineman-291195262/"
+    ]
   }
   </script>
   
   <!-- Google Fonts: Merriweather for headings, Roboto for body -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   
+  <!-- Polyfill for Intersection Observer (for older browsers) -->
+  <script async src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+  
   <!-- CSS -->
   <style>
+    /* Skip Link for Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 8px;
+      z-index: 10000;
+      transition: top 0.3s;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+    
     /* CSS Variables for theming */
     :root {
       --primary-color: #0057B8;
@@ -130,6 +152,7 @@
     .nav-logo:hover {
       transform: scale(1.05);
     }
+    /* Default desktop menu */
     .nav-menu {
       list-style: none;
       display: flex;
@@ -146,11 +169,24 @@
     .nav-menu li a:hover {
       color: #cce0ff;
     }
-    .menu-toggle {
-      display: none;
+    /* Mobile Menu Toggle & Dark Mode Toggle Buttons */
+    .menu-toggle,
+    #darkModeToggle {
       font-size: 1.8rem;
       color: #fff;
       cursor: pointer;
+      background: none;
+    }
+    /* Mobile Menu: Hidden by default on small screens */
+    @media (max-width: 768px) {
+      .nav-menu {
+        flex-direction: column;
+        display: none;
+        width: 100%;
+      }
+      .nav-menu.open {
+        display: flex;
+      }
     }
     
     /* Hero Section */
@@ -250,7 +286,7 @@
       padding-bottom: 8px;
     }
     
-    /* Services Section (CSS Grid) - UPDATED */
+    /* Services Section (CSS Grid) */
     .services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -382,36 +418,26 @@
       transform: scale(1.05);
     }
     
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      .nav-menu {
-        flex-direction: column;
-        display: none;
-        width: 100%;
-      }
-      .nav-menu li {
-        margin: 10px 0;
-        text-align: center;
-      }
-      .menu-toggle {
-        display: block;
-      }
-      header h1 {
-        font-size: 2.5rem;
-      }
-      header p {
-        font-size: 1.2rem;
-      }
+    /* Additional focus styling for interactive elements */
+    button:focus, a:focus {
+      box-shadow: 0 0 0 3px var(--primary-color);
     }
   </style>
 </head>
 <body>
+  <!-- Skip to content link for accessibility -->
+  <a href="#mainContent" class="skip-link">Skip to content</a>
+  
+  <!-- Scroll Progress Bar -->
   <div id="progressBar"></div>
   
-  <nav>
+  <nav role="navigation">
     <div class="nav-container">
       <div class="nav-logo">Nate Fineman</div>
-      <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+      <!-- Mobile menu toggle with ARIA attributes -->
+      <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false">&#9776;</button>
+      <!-- Dark mode toggle button -->
+      <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button>
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
@@ -429,68 +455,73 @@
     </div>
   </header>
   
-  <div class="container">
-    <section id="about">
-      <h2 class="section-title">About Me</h2>
-      <p>Hi, I’m Nate Fineman. I was recruited to Princeton's men's heavyweight rowing team after years of dedication to the sport. I rowed at Oakland Strokes from 8th grade through my senior year, honing my skills and learning what it takes to succeed in collegiate rowing recruitment.</p>
-      <p>Now, I’m passionate about guiding other rowers through the recruitment process—from refining on-water technique to crafting effective communications with college coaches. My mission is to share the strategies and insights that propelled me to a top-tier program, empowering aspiring rowers to realize their dreams.</p>
-    </section>
-    
-    <!-- UPDATED SERVICES SECTION -->
-    <section id="services">
-      <h2 class="section-title">Services</h2>
-      <div class="services">
-        <div class="service">
-          <h3>Video Consultations</h3>
-          <p>Connect one-on-one via video calls to receive personalized advice and strategies tailored to your unique strengths and recruitment goals.</p>
-        </div>
-        <div class="service">
-          <h3>PDF Guides</h3>
-          <p>Access professionally curated PDF guides filled with actionable tips and insights to help you navigate the recruitment process with confidence.</p>
-        </div>
-        <div class="service">
-          <h3>Ongoing Mentorship &amp; Coaching</h3>
-          <p>Benefit from continuous support and expert guidance through regular mentorship sessions designed to refine your skills and keep you on track toward success.</p>
-        </div>
-      </div>
-    </section>
-    
-    <section id="testimonials">
-      <h2 class="section-title">Testimonials</h2>
-      <div class="carousel" id="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item">
-            <p>"Nate’s guidance transformed my approach to rowing recruitment. His insights on technique and coach communication made all the difference!"</p>
-            <p><strong>- A Recruited Rower</strong></p>
+  <!-- Main content starts here -->
+  <main id="mainContent">
+    <div class="container">
+      <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <p>Hi, I’m Nate Fineman. I was recruited to Princeton's men's heavyweight rowing team after years of dedication to the sport. I rowed at Oakland Strokes from 8th grade through my senior year, honing my skills and learning what it takes to succeed in collegiate rowing recruitment.</p>
+        <p>Now, I’m passionate about guiding other rowers through the recruitment process—from refining on-water technique to crafting effective communications with college coaches. My mission is to share the strategies and insights that propelled me to a top-tier program, empowering aspiring rowers to realize their dreams.</p>
+      </section>
+      
+      <!-- Services Section -->
+      <section id="services">
+        <h2 class="section-title">Services</h2>
+        <div class="services">
+          <div class="service">
+            <h3>Video Consultations</h3>
+            <p>Connect one-on-one via video calls to receive personalized advice and strategies tailored to your unique strengths and recruitment goals.</p>
           </div>
-          <div class="carousel-item">
-            <p>"Thanks to Nate, I refined my training and learned how to effectively reach out to college coaches. His mentorship was invaluable!"</p>
-            <p><strong>- Another Successful Recruit</strong></p>
+          <div class="service">
+            <h3>PDF Guides</h3>
+            <p>Access professionally curated PDF guides filled with actionable tips and insights to help you navigate the recruitment process with confidence.</p>
+          </div>
+          <div class="service">
+            <h3>Ongoing Mentorship &amp; Coaching</h3>
+            <p>Benefit from continuous support and expert guidance through regular mentorship sessions designed to refine your skills and keep you on track toward success.</p>
           </div>
         </div>
-        <div class="carousel-controls">
-          <button id="prev" aria-label="Previous">&#10094;</button>
-          <button id="next" aria-label="Next">&#10095;</button>
+      </section>
+      
+      <!-- Testimonials Section with Carousel -->
+      <section id="testimonials">
+        <h2 class="section-title">Testimonials</h2>
+        <div class="carousel" id="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item">
+              <p>"Nate’s guidance transformed my approach to rowing recruitment. His insights on technique and coach communication made all the difference!"</p>
+              <p><strong>- A Recruited Rower</strong></p>
+            </div>
+            <div class="carousel-item">
+              <p>"Thanks to Nate, I refined my training and learned how to effectively reach out to college coaches. His mentorship was invaluable!"</p>
+              <p><strong>- Another Successful Recruit</strong></p>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button id="prev" aria-label="Previous">&#10094;</button>
+            <button id="next" aria-label="Next">&#10095;</button>
+          </div>
         </div>
-      </div>
-    </section>
-    
-    <section id="contact">
-      <h2 class="section-title">Contact Me</h2>
-      <form action="https://formspree.io/f/mldglbzp" method="POST">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your full name" required>
-        
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Your email address" required>
-        
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="How can I help you?" required></textarea>
-        
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-  </div>
+      </section>
+      
+      <!-- Contact Section -->
+      <section id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <form action="https://formspree.io/f/mldglbzp" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required>
+          
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your email address" required>
+          
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="How can I help you?" required></textarea>
+          
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
+    </div>
+  </main>
   
   <footer>
     <p>&copy; 2025 Nate Fineman - Rowing Recruitment Mentor. All rights reserved.</p>
@@ -512,12 +543,15 @@
   
   <button id="backToTop" aria-label="Back to Top">&#8679;</button>
   
+  <!-- JavaScript -->
   <script>
-    // Mobile Navigation Toggle
+    // Mobile Navigation Toggle (using class toggle)
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     menuToggle.addEventListener('click', () => {
-      navMenu.style.display = (navMenu.style.display === 'flex') ? 'none' : 'flex';
+      navMenu.classList.toggle('open');
+      const expanded = navMenu.classList.contains('open');
+      menuToggle.setAttribute('aria-expanded', expanded);
     });
     
     // Smooth Scrolling for Nav Links
@@ -526,13 +560,28 @@
         e.preventDefault();
         const targetID = this.getAttribute('href').substring(1);
         document.getElementById(targetID).scrollIntoView({ behavior: 'smooth' });
+        // If on mobile, close the menu
         if (window.innerWidth < 768) {
-          navMenu.style.display = 'none';
+          navMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', false);
         }
       });
     });
     
-    // Testimonials Carousel Functionality
+    // Dark Mode Toggle with localStorage support
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+      // Optionally change the icon/text
+      darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.textContent = '☀️';
+    }
+    
+    // Testimonials Carousel Functionality with auto-advance pause on hover
     const carousel = document.getElementById('carousel');
     const carouselInner = carousel.querySelector('.carousel-inner');
     const carouselItems = carousel.querySelectorAll('.carousel-item');
@@ -540,9 +589,17 @@
     const nextButton = document.getElementById('next');
     let currentIndex = 0;
     const totalItems = carouselItems.length;
+    let autoAdvanceInterval;
+    
     function showItem(index) {
       carouselInner.style.transform = `translateX(-${index * 100}%)`;
     }
+    
+    function autoAdvance() {
+      currentIndex = (currentIndex + 1) % totalItems;
+      showItem(currentIndex);
+    }
+    
     prevButton.addEventListener('click', () => {
       currentIndex = (currentIndex - 1 + totalItems) % totalItems;
       showItem(currentIndex);
@@ -551,10 +608,17 @@
       currentIndex = (currentIndex + 1) % totalItems;
       showItem(currentIndex);
     });
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % totalItems;
-      showItem(currentIndex);
-    }, 5000);
+    
+    // Start auto-advancing
+    autoAdvanceInterval = setInterval(autoAdvance, 5000);
+    
+    // Pause auto-advance when user hovers over the carousel
+    carousel.addEventListener('mouseenter', () => {
+      clearInterval(autoAdvanceInterval);
+    });
+    carousel.addEventListener('mouseleave', () => {
+      autoAdvanceInterval = setInterval(autoAdvance, 5000);
+    });
     
     // Back-to-Top Button & Scroll Progress Bar
     const backToTop = document.getElementById('backToTop');
@@ -567,7 +631,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     
-    // Section Fade-In on Scroll
+    // Section Fade-In on Scroll using Intersection Observer
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
