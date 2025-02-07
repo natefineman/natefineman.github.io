@@ -39,7 +39,7 @@
   
   <!-- CSS -->
   <style>
-    /* CSS Variables for easy theming */
+    /* CSS Variables for theming */
     :root {
       --primary-color: #0057B8;
       --primary-dark: #003f7f;
@@ -49,7 +49,6 @@
       --card-bg: #fafafa;
       --newsletter-bg: #e7f0ff;
     }
-    /* Dark Mode Variables */
     .dark-mode {
       --primary-color: #4a90e2;
       --primary-dark: #357ABD;
@@ -59,12 +58,12 @@
       --card-bg: #444;
       --newsletter-bg: #555;
     }
-    /* Extra hero overlay for dark mode */
+    /* Extra overlay adjustment for dark mode */
     body.dark-mode header::before {
       background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
     }
     
-    /* Reset and Base Styles */
+    /* Reset & Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -89,7 +88,6 @@
       cursor: pointer;
       font-family: inherit;
     }
-    /* Focus Styles */
     a:focus, button:focus, input:focus, textarea:focus {
       outline: 2px dashed var(--primary-color);
       outline-offset: 3px;
@@ -154,7 +152,6 @@
       color: #fff;
       cursor: pointer;
     }
-    /* Dark Mode Toggle Button in Nav */
     #darkModeToggle {
       background: transparent;
       border: 1px solid #fff;
@@ -169,7 +166,7 @@
       transform: scale(1.05);
     }
     
-    /* Hero Section with Parallax Background */
+    /* Hero Section */
     header {
       position: relative;
       background: url('https://i.ytimg.com/vi/2VsA6l3FQAg/maxresdefault.jpg') no-repeat center center/cover;
@@ -183,11 +180,10 @@
       padding: 0 20px;
       overflow: hidden;
     }
-    /* Overlay (always on top of background, below text) */
     header::before {
       content: "";
       position: absolute;
-      top: 0; 
+      top: 0;
       left: 0;
       width: 100%;
       height: 100%;
@@ -208,7 +204,6 @@
       margin-bottom: 20px;
       animation: fadeInUp 1s ease-out;
     }
-    /* Hero CTA Button */
     .hero-cta {
       position: relative;
       z-index: 3;
@@ -226,7 +221,6 @@
       background: var(--primary-dark);
       transform: scale(1.05);
     }
-    /* Animated SVG Wave at Bottom of Hero (now behind text) */
     .hero-wave {
       position: absolute;
       bottom: 0;
@@ -242,7 +236,6 @@
       50% { transform: translateX(-20px); }
     }
     
-    /* Keyframes for Fade Animations */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -256,7 +249,7 @@
       to { opacity: 1; }
     }
     
-    /* Main Content Container */
+    /* Main Content */
     .container {
       max-width: 1100px;
       margin: 40px auto;
@@ -283,7 +276,7 @@
       padding-bottom: 8px;
     }
     
-    /* Services Section using CSS Grid */
+    /* Services Section (CSS Grid) */
     .services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -442,10 +435,8 @@
   </style>
 </head>
 <body>
-  <!-- Scroll Progress Bar -->
   <div id="progressBar"></div>
   
-  <!-- Navigation -->
   <nav>
     <div class="nav-container">
       <div class="nav-logo">Nate Fineman</div>
@@ -460,14 +451,12 @@
     </div>
   </nav>
   
-  <!-- Hero Section -->
   <header>
     <h1>Nate Fineman - Rowing Recruitment Mentor</h1>
     <p>Empowering rowers to achieve their collegiate dreams</p>
     <div class="hero-cta">
       <a href="#contact">Get in Touch</a>
     </div>
-    <!-- Animated SVG Wave (now behind the text) -->
     <div class="hero-wave">
       <svg class="wave" viewBox="0 0 1440 320">
         <path fill="rgba(0,0,0,0.2)" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,154.7C384,128,480,96,576,112C672,128,768,192,864,202.7C960,213,1056,171,1152,165.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
@@ -475,16 +464,13 @@
     </div>
   </header>
   
-  <!-- Main Content -->
   <div class="container">
-    <!-- About Section -->
     <section id="about">
       <h2 class="section-title">About Me</h2>
       <p>Hi, I’m Nate Fineman. I was recruited to Princeton's men's heavyweight rowing team after years of dedication to the sport. I rowed at Oakland Strokes from 8th grade through my senior year, honing my skills and learning what it takes to succeed in collegiate rowing recruitment.</p>
       <p>Now, I’m passionate about guiding other rowers through the recruitment process—from refining on-water technique to crafting effective communications with college coaches. My mission is to share the strategies and insights that propelled me to a top-tier program, empowering aspiring rowers to realize their dreams.</p>
     </section>
     
-    <!-- Services Section -->
     <section id="services">
       <h2 class="section-title">Services</h2>
       <div class="services">
@@ -507,7 +493,6 @@
       </div>
     </section>
     
-    <!-- Testimonials Section -->
     <section id="testimonials">
       <h2 class="section-title">Testimonials</h2>
       <div class="carousel" id="carousel">
@@ -528,7 +513,6 @@
       </div>
     </section>
     
-    <!-- Contact Section -->
     <section id="contact">
       <h2 class="section-title">Contact Me</h2>
       <form action="https://formspree.io/f/mldglbzp" method="POST">
@@ -546,12 +530,10 @@
     </section>
   </div>
   
-  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Nate Fineman - Rowing Recruitment Mentor. All rights reserved.</p>
     <div class="social-links">
       <a href="https://instagram.com/nathanfineman" target="_blank" aria-label="Instagram">
-        <!-- Instagram SVG Icon -->
         <svg width="24" height="24" viewBox="0 0 24 24">
           <path fill="currentColor" d="M12,2.163c3.204,0,3.584,0.012,4.85,0.07c1.366,0.062,2.633,0.345,3.608,1.32c0.975,0.975,1.258,2.242,1.32,3.608c0.058,1.266,0.069,1.646,0.069,4.85 s-0.012,3.584-0.069,4.85c-0.062,1.366-0.345,2.633-1.32,3.608c-0.975,0.975-2.242,1.258-3.608,1.32 c-1.266,0.058-1.646,0.069-4.85,0.069s-3.584-0.012-4.85-0.069c-1.366-0.062-2.633-0.345-3.608-1.32c-0.975-0.975-1.258-2.242-1.32-3.608 C2.175,15.747,2.163,15.367,2.163,12s0.012-3.584,0.07-4.85c0.062-1.366,0.345-2.633,1.32-3.608C4.521,2.508,5.788,2.225,7.154,2.163 C8.424,2.105,8.804,2.093,12,2.093 M12,0C8.741,0,8.332,0.015,7.052,0.072C5.775,0.129,4.602,0.422,3.635,1.389 C2.668,2.355,2.375,3.529,2.318,4.806C2.261,6.086,2.246,6.495,2.246,9.754s0.015,3.668,0.072,4.947 c0.057,1.277,0.35,2.451,1.317,3.418c0.967,0.967,2.141,1.26,3.418,1.317c1.28,0.057,1.689,0.072,4.947,0.072 s3.668-0.015,4.947-0.072c1.277-0.057,2.451-0.35,3.418-1.317c0.967-0.967,1.26-2.141,1.317-3.418 c0.057-1.28,0.072-1.689,0.072-4.947s-0.015-3.668-0.072-4.947c-0.057-1.277-0.35-2.451-1.317-3.418 C19.402,0.422,18.228,0.129,16.95,0.072C15.67,0.015,15.261,0,12,0L12,0z"/>
           <path fill="currentColor" d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162S8.597,18.162,12,18.162 S18.162,15.403,18.162,12S15.403,5.838,12,5.838z M12,16.162c-2.198,0-3.162-0.964-3.162-3.162S9.802,9.838,12,9.838 s3.162,0.964,3.162,3.162S14.198,16.162,12,16.162z"/>
@@ -559,7 +541,6 @@
         </svg>
       </a>
       <a href="https://www.linkedin.com/in/nate-fineman-291195262/" target="_blank" aria-label="LinkedIn">
-        <!-- LinkedIn SVG Icon -->
         <svg width="24" height="24" viewBox="0 0 24 24">
           <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.852-3.037-1.853 0-2.137 1.445-2.137 2.939v5.667H9.357V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.367-1.852 3.601 0 4.268 2.37 4.268 5.455v6.288zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.777 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.554C0 23.229.792 24 1.771 24h20.451C23.208 24 24 23.229 24 22.277V1.723C24 .771 23.208 0 22.225 0z"/>
         </svg>
@@ -567,10 +548,8 @@
     </div>
   </footer>
   
-  <!-- Back-to-Top Button -->
   <button id="backToTop" aria-label="Back to Top">&#8679;</button>
   
-  <!-- JavaScript -->
   <script>
     // Mobile Navigation Toggle
     const menuToggle = document.getElementById('mobile-menu');
@@ -598,7 +577,7 @@
       darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
     });
     
-    // Testimonials Carousel Functionality
+    // Testimonials Carousel
     const carousel = document.getElementById('carousel');
     const carouselInner = carousel.querySelector('.carousel-inner');
     const carouselItems = carousel.querySelectorAll('.carousel-item');
@@ -617,21 +596,15 @@
       currentIndex = (currentIndex + 1) % totalItems;
       showItem(currentIndex);
     });
-    // Auto-slide every 5 seconds
     setInterval(() => {
       currentIndex = (currentIndex + 1) % totalItems;
       showItem(currentIndex);
     }, 5000);
     
-    // Back-to-Top Button Functionality
+    // Back-to-Top Button & Scroll Progress Bar
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTop.style.display = 'flex';
-      } else {
-        backToTop.style.display = 'none';
-      }
-      // Update progress bar width
+      backToTop.style.display = (window.pageYOffset > 300) ? 'flex' : 'none';
       const scrollProgress = (window.pageYOffset / (document.body.scrollHeight - window.innerHeight)) * 100;
       document.getElementById('progressBar').style.width = scrollProgress + '%';
     });
@@ -639,12 +612,12 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     
-    // Scroll-triggered animations using Intersection Observer
+    // Section Fade-In on Scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          observer.unobserve(entry.target); // Animate once
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
