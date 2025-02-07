@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nate Fineman - Rowing Recruitment Mentor</title>
   
-  <!-- Favicon (replace with your own if available) -->
+  <!-- Favicon -->
   <link rel="icon" href="https://via.placeholder.com/32" type="image/png">
   
   <!-- Open Graph / Social Meta Tags -->
@@ -34,11 +34,32 @@
   }
   </script>
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Merriweather for headings, Roboto for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   
-  <!-- Basic CSS -->
+  <!-- CSS -->
   <style>
+    /* CSS Variables for easy theming */
+    :root {
+      --primary-color: #0057B8;
+      --primary-dark: #003f7f;
+      --nav-bg: #003f7f;
+      --text-color: #333;
+      --bg-color: #f7f7f7;
+      --card-bg: #fafafa;
+      --newsletter-bg: #e7f0ff;
+    }
+    /* Dark Mode Variables (activated with .dark-mode on body) */
+    .dark-mode {
+      --primary-color: #4a90e2;
+      --primary-dark: #357ABD;
+      --nav-bg: #111;
+      --text-color: #eee;
+      --bg-color: #222;
+      --card-bg: #333;
+      --newsletter-bg: #444;
+    }
+    
     /* Reset and Base Styles */
     * {
       margin: 0;
@@ -47,19 +68,48 @@
     }
     body {
       font-family: 'Roboto', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
       line-height: 1.6;
-      background: #f7f7f7;
-      color: #333;
       scroll-behavior: smooth;
+    }
+    h1, h2, h3 {
+      font-family: 'Merriweather', serif;
     }
     a {
       text-decoration: none;
       color: inherit;
     }
+    button {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    /* Focus Styles */
+    a:focus, button:focus, input:focus, textarea:focus {
+      outline: 2px dashed var(--primary-color);
+      outline-offset: 3px;
+    }
+    
+    /* Scroll Progress Bar */
+    #progressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--primary-color);
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.2s ease-out;
+    }
+    
     /* Navigation */
     nav {
-      background: #003f7f;
+      background: var(--nav-bg);
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
     .nav-container {
       max-width: 1100px;
@@ -81,6 +131,7 @@
     .nav-menu {
       list-style: none;
       display: flex;
+      align-items: center;
     }
     .nav-menu li {
       margin-left: 20px;
@@ -99,7 +150,22 @@
       color: #fff;
       cursor: pointer;
     }
-    /* Hero Section with Parallax */
+    /* Dark Mode Toggle Button in Nav */
+    #darkModeToggle {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 3px;
+      margin-left: 20px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    #darkModeToggle:hover {
+      background: var(--primary-dark);
+      transform: scale(1.05);
+    }
+    
+    /* Hero Section with Parallax Background & Video Alternative */
     header {
       position: relative;
       background: url('https://i.ytimg.com/vi/2VsA6l3FQAg/maxresdefault.jpg') no-repeat center center/cover;
@@ -144,7 +210,7 @@
       animation: fadeIn 1.5s ease-out;
     }
     .hero-cta a {
-      background: #0057B8;
+      background: var(--primary-color);
       color: #fff;
       padding: 14px 28px;
       border-radius: 5px;
@@ -152,10 +218,26 @@
       transition: background 0.3s, transform 0.3s;
     }
     .hero-cta a:hover {
-      background: #003f7f;
+      background: var(--primary-dark);
       transform: scale(1.05);
     }
-    /* Keyframes for animations */
+    /* Animated SVG Wave at Bottom of Hero */
+    .hero-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+    }
+    .wave {
+      animation: waveAnimation 5s ease-in-out infinite;
+    }
+    @keyframes waveAnimation {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-20px); }
+    }
+    
+    /* Keyframes for Fade Animations */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -168,6 +250,7 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+    
     /* Main Content Container */
     .container {
       max-width: 1100px;
@@ -179,37 +262,33 @@
     }
     section {
       margin-bottom: 60px;
-    }
-    .section-title {
-      margin-bottom: 20px;
-      color: #0057B8;
-      font-size: 2rem;
-      border-bottom: 3px solid #0057B8;
-      padding-bottom: 8px;
-    }
-    /* Scroll-triggered Animation */
-    .animate-on-scroll {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .animate-on-scroll.in-view {
+    section.in-view {
       opacity: 1;
       transform: translateY(0);
     }
-    /* Services Section */
+    .section-title {
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      font-size: 2rem;
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 8px;
+    }
+    
+    /* Services Section using CSS Grid */
     .services {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      justify-content: space-between;
     }
     .service {
-      flex: 1 1 300px;
       padding: 20px;
+      background: var(--card-bg);
       border: 1px solid #ddd;
       border-radius: 5px;
-      background: #fafafa;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .service:hover {
@@ -218,12 +297,12 @@
     }
     .service h3 {
       margin-bottom: 10px;
-      color: #003f7f;
+      color: var(--nav-bg);
     }
-    /* Newsletter Service Highlight */
     .service.newsletter {
-      background: #e7f0ff;
+      background: var(--newsletter-bg);
     }
+    
     /* Testimonials Carousel */
     .carousel {
       position: relative;
@@ -251,16 +330,15 @@
     }
     .carousel-controls button {
       background: rgba(0,0,0,0.5);
-      border: none;
       color: #fff;
       padding: 10px;
-      cursor: pointer;
       font-size: 1.5rem;
       transition: background 0.3s;
     }
     .carousel-controls button:hover {
       background: rgba(0,0,0,0.7);
     }
+    
     /* Contact Form */
     form {
       max-width: 600px;
@@ -277,24 +355,25 @@
       border: 1px solid #ddd;
       border-radius: 5px;
       margin-bottom: 15px;
+      background: #fff;
+      color: var(--text-color);
     }
     form button {
-      background: #0057B8;
+      background: var(--primary-color);
       color: #fff;
       padding: 12px 24px;
-      border: none;
       border-radius: 5px;
-      cursor: pointer;
       font-size: 1rem;
       transition: background 0.3s, transform 0.3s;
     }
     form button:hover {
-      background: #003f7f;
+      background: var(--primary-dark);
       transform: scale(1.02);
     }
+    
     /* Footer */
     footer {
-      background: #003f7f;
+      background: var(--nav-bg);
       color: #fff;
       text-align: center;
       padding: 20px;
@@ -305,20 +384,19 @@
     }
     footer .social-links a {
       margin: 0 10px;
-      color: #fff;
       transition: color 0.3s;
     }
     footer .social-links a:hover {
       color: #cce0ff;
     }
+    
     /* Back-to-Top Button */
     #backToTop {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background: #0057B8;
+      background: var(--primary-color);
       color: #fff;
-      border: none;
       border-radius: 50%;
       width: 50px;
       height: 50px;
@@ -326,15 +404,15 @@
       display: none;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: background 0.3s, transform 0.3s;
       z-index: 1000;
     }
     #backToTop:hover {
-      background: #003f7f;
+      background: var(--primary-dark);
       transform: scale(1.05);
     }
+    
     /* Responsive Styles */
     @media (max-width: 768px) {
       .nav-menu {
@@ -349,9 +427,6 @@
       .menu-toggle {
         display: block;
       }
-      .services {
-        flex-direction: column;
-      }
       header h1 {
         font-size: 2.5rem;
       }
@@ -362,6 +437,9 @@
   </style>
 </head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div id="progressBar"></div>
+  
   <!-- Navigation -->
   <nav>
     <div class="nav-container">
@@ -372,9 +450,11 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><button id="darkModeToggle" aria-label="Toggle Dark Mode">Dark Mode</button></li>
       </ul>
     </div>
   </nav>
+  
   <!-- Hero Section -->
   <header>
     <h1>Nate Fineman - Rowing Recruitment Mentor</h1>
@@ -382,17 +462,25 @@
     <div class="hero-cta">
       <a href="#contact">Get in Touch</a>
     </div>
+    <!-- Animated SVG Wave -->
+    <div class="hero-wave">
+      <svg class="wave" viewBox="0 0 1440 320">
+        <path fill="rgba(0,0,0,0.2)" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,154.7C384,128,480,96,576,112C672,128,768,192,864,202.7C960,213,1056,171,1152,165.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      </svg>
+    </div>
   </header>
+  
   <!-- Main Content -->
   <div class="container">
     <!-- About Section -->
-    <section id="about" class="animate-on-scroll">
+    <section id="about">
       <h2 class="section-title">About Me</h2>
-      <p>Hi, I’m Nate Fineman. I was recruited to Princeton's men's heavyweight rowing team after years of dedication to the sport. I rowed at Oakland Strokes from 8th grade through my senior year, where I honed my skills and learned what it takes to succeed in collegiate rowing recruitment.</p>
+      <p>Hi, I’m Nate Fineman. I was recruited to Princeton's men's heavyweight rowing team after years of dedication to the sport. I rowed at Oakland Strokes from 8th grade through my senior year, honing my skills and learning what it takes to succeed in collegiate rowing recruitment.</p>
       <p>Now, I’m passionate about guiding other rowers through the recruitment process—from refining on-water technique to crafting effective communications with college coaches. My mission is to share the strategies and insights that propelled me to a top-tier program, empowering aspiring rowers to realize their dreams.</p>
     </section>
+    
     <!-- Services Section -->
-    <section id="services" class="animate-on-scroll">
+    <section id="services">
       <h2 class="section-title">Services</h2>
       <div class="services">
         <div class="service">
@@ -400,7 +488,7 @@
           <p>One-on-one sessions to evaluate your rowing performance, set realistic goals, and craft tailored recruitment communications.</p>
         </div>
         <div class="service">
-          <h3>Workshops & Webinars</h3>
+          <h3>Workshops &amp; Webinars</h3>
           <p>Interactive sessions covering topics like contacting college coaches, improving erg times, and recruitment strategies.</p>
         </div>
         <div class="service">
@@ -413,8 +501,9 @@
         </div>
       </div>
     </section>
+    
     <!-- Testimonials Section -->
-    <section id="testimonials" class="animate-on-scroll">
+    <section id="testimonials">
       <h2 class="section-title">Testimonials</h2>
       <div class="carousel" id="carousel">
         <div class="carousel-inner">
@@ -428,25 +517,30 @@
           </div>
         </div>
         <div class="carousel-controls">
-          <button id="prev">&#10094;</button>
-          <button id="next">&#10095;</button>
+          <button id="prev" aria-label="Previous">&#10094;</button>
+          <button id="next" aria-label="Next">&#10095;</button>
         </div>
       </div>
     </section>
+    
     <!-- Contact Section -->
-    <section id="contact" class="animate-on-scroll">
+    <section id="contact">
       <h2 class="section-title">Contact Me</h2>
       <form action="https://formspree.io/f/mldglbzp" method="POST">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your full name" required>
+        
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="Your email address" required>
+        
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="5" placeholder="How can I help you?" required></textarea>
+        
         <button type="submit">Send Message</button>
       </form>
     </section>
   </div>
+  
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Nate Fineman - Rowing Recruitment Mentor. All rights reserved.</p>
@@ -467,10 +561,11 @@
       </a>
     </div>
   </footer>
+  
   <!-- Back-to-Top Button -->
   <button id="backToTop" aria-label="Back to Top">&#8679;</button>
   
-  <!-- JavaScript Enhancements -->
+  <!-- JavaScript -->
   <script>
     // Mobile Navigation Toggle
     const menuToggle = document.getElementById('mobile-menu');
@@ -489,6 +584,13 @@
           navMenu.style.display = 'none';
         }
       });
+    });
+    
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
     });
     
     // Testimonials Carousel Functionality
@@ -524,23 +626,24 @@
       } else {
         backToTop.style.display = 'none';
       }
+      // Update progress bar width
+      const scrollProgress = (window.pageYOffset / (document.body.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('progressBar').style.width = scrollProgress + '%';
     });
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     
-    // Scroll-Triggered Animations using Intersection Observer
+    // Scroll-triggered animations using Intersection Observer
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          // Optionally, you can unobserve if you want the animation to run only once:
-          observer.unobserve(entry.target);
+          observer.unobserve(entry.target); // Animate once
         }
       });
     }, { threshold: 0.1 });
-    
-    document.querySelectorAll('.animate-on-scroll').forEach(section => {
+    document.querySelectorAll('section').forEach(section => {
       observer.observe(section);
     });
   </script>
