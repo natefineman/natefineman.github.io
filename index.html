@@ -272,7 +272,7 @@
     .container {
       max-width: 1100px;
       margin: 40px auto;
-      background: var(--card-bg);  /* Uses variable so it turns gray in dark mode */
+      background: var(--card-bg);
       padding: 40px;
       border-radius: 8px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
@@ -323,7 +323,7 @@
       overflow: hidden;
       border: 1px solid #ddd;
       border-radius: 5px;
-      background: var(--card-bg);  /* Updated to change with dark mode */
+      background: var(--card-bg);
     }
     .carousel-inner {
       display: flex;
@@ -536,17 +536,14 @@
     <p>&copy; 2025 Nate Fineman - Rowing Recruitment Mentor. All rights reserved.</p>
     <div class="social-links">
       <a href="https://instagram.com/nathanfineman" target="_blank" aria-label="Instagram">
-        <!-- Replaced with a cleaner, standard Instagram SVG icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 448 512">
-          <path fill="currentColor" d="M224.1 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 
-          115-51.4 115-115-51.4-115-115-115zm0 190c-41.4 0-75-33.6-75-75s33.6-75 
-          75-75 75 33.6 75 75-33.6 75-75 75zm146.4-194.1c0 14.9-12 26.9-26.9 
-          26.9h-29.1c-14.9 0-26.9-12-26.9-26.9v-29.1c0-14.9 12-26.9 26.9-26.9h29.1c14.9 
-          0 26.9 12 26.9 26.9v29.1zM398.8 96c-1.4-27.2-7.8-51.2-28.4-71.8C352.1 
-          3.1 328.1-3.3 301 0 273.9 3.3 249.9 10.7 229.5 27.6 209.1 44.5 192 
-          66.2 180.7 91c-11.3 24.8-18.8 51.1-20.2 79.3-1.4 27.2 3.2 50.9 18.8 
-          73.5 15.6 22.6 39.4 38.7 68.4 45.5 29 6.8 73.6 6.8 102.6 0 29-6.8 
-          52.8-22.9 68.4-45.5 15.6-22.6 20.2-46.3 18.8-73.5-1.4-27.2-8.9-53.5-20.2-78.3z"/>
+        <!-- Revised Instagram Glyph Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+          <path fill="currentColor" d="M349.33,69.33H162.67C113.97,69.33,69.33,113.97,69.33,162.67v186.67
+            c0,48.7,44.64,93.33,93.33,93.33h186.67c48.7,0,93.33-44.64,93.33-93.33V162.67
+            C442.67,113.97,398.03,69.33,349.33,69.33z M256,346.67c-50.63,0-92.02-41.39-92.02-92.02
+            S205.37,162.67,256,162.67s92.02,41.39,92.02,92.02S306.63,346.67,256,346.67z
+            M370.67,136c0,14.76-11.98,26.73-26.73,26.73S317.21,150.76,317.21,136
+            s11.98-26.73,26.73-26.73S370.67,121.24,370.67,136z"/>
         </svg>
       </a>
       <a href="https://www.linkedin.com/in/nate-fineman-291195262/" target="_blank" aria-label="LinkedIn">
@@ -567,7 +564,7 @@
   
   <!-- JavaScript -->
   <script>
-    // Mobile Navigation Toggle (using class toggle)
+    // Mobile Navigation Toggle
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     menuToggle.addEventListener('click', () => {
@@ -582,7 +579,6 @@
         e.preventDefault();
         const targetID = this.getAttribute('href').substring(1);
         document.getElementById(targetID).scrollIntoView({ behavior: 'smooth' });
-        // If on mobile, close the menu
         if (window.innerWidth < 768) {
           navMenu.classList.remove('open');
           menuToggle.setAttribute('aria-expanded', false);
@@ -595,7 +591,6 @@
     darkModeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-      // Optionally change the icon/text
       darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
     });
     if (localStorage.getItem('darkMode') === 'true') {
@@ -603,7 +598,7 @@
       darkModeToggle.textContent = '☀️';
     }
     
-    // Testimonials Carousel Functionality with auto-advance pause on hover
+    // Testimonials Carousel Functionality
     const carousel = document.getElementById('carousel');
     const carouselInner = carousel.querySelector('.carousel-inner');
     const carouselItems = carousel.querySelectorAll('.carousel-item');
@@ -631,16 +626,9 @@
       showItem(currentIndex);
     });
     
-    // Start auto-advancing
     autoAdvanceInterval = setInterval(autoAdvance, 5000);
-    
-    // Pause auto-advance when user hovers over the carousel
-    carousel.addEventListener('mouseenter', () => {
-      clearInterval(autoAdvanceInterval);
-    });
-    carousel.addEventListener('mouseleave', () => {
-      autoAdvanceInterval = setInterval(autoAdvance, 5000);
-    });
+    carousel.addEventListener('mouseenter', () => clearInterval(autoAdvanceInterval));
+    carousel.addEventListener('mouseleave', () => autoAdvanceInterval = setInterval(autoAdvance, 5000));
     
     // Back-to-Top Button & Scroll Progress Bar
     const backToTop = document.getElementById('backToTop');
@@ -662,9 +650,7 @@
         }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
   </script>
 </body>
 </html>
