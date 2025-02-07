@@ -49,15 +49,19 @@
       --card-bg: #fafafa;
       --newsletter-bg: #e7f0ff;
     }
-    /* Dark Mode Variables (activated with .dark-mode on body) */
+    /* Dark Mode Variables */
     .dark-mode {
       --primary-color: #4a90e2;
       --primary-dark: #357ABD;
       --nav-bg: #111;
-      --text-color: #eee;
+      --text-color: #fff;
       --bg-color: #222;
-      --card-bg: #333;
-      --newsletter-bg: #444;
+      --card-bg: #444;
+      --newsletter-bg: #555;
+    }
+    /* Extra hero overlay for dark mode */
+    body.dark-mode header::before {
+      background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
     }
     
     /* Reset and Base Styles */
@@ -165,7 +169,7 @@
       transform: scale(1.05);
     }
     
-    /* Hero Section with Parallax Background & Video Alternative */
+    /* Hero Section with Parallax Background */
     header {
       position: relative;
       background: url('https://i.ytimg.com/vi/2VsA6l3FQAg/maxresdefault.jpg') no-repeat center center/cover;
@@ -179,6 +183,7 @@
       padding: 0 20px;
       overflow: hidden;
     }
+    /* Overlay (always on top of background, below text) */
     header::before {
       content: "";
       position: absolute;
@@ -191,14 +196,14 @@
     }
     header h1 {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       font-size: 3rem;
       margin-bottom: 10px;
       animation: fadeInDown 1s ease-out;
     }
     header p {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       font-size: 1.5rem;
       margin-bottom: 20px;
       animation: fadeInUp 1s ease-out;
@@ -206,7 +211,7 @@
     /* Hero CTA Button */
     .hero-cta {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       animation: fadeIn 1.5s ease-out;
     }
     .hero-cta a {
@@ -221,13 +226,13 @@
       background: var(--primary-dark);
       transform: scale(1.05);
     }
-    /* Animated SVG Wave at Bottom of Hero */
+    /* Animated SVG Wave at Bottom of Hero (now behind text) */
     .hero-wave {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      z-index: 2;
+      z-index: 0;
     }
     .wave {
       animation: waveAnimation 5s ease-in-out infinite;
@@ -462,7 +467,7 @@
     <div class="hero-cta">
       <a href="#contact">Get in Touch</a>
     </div>
-    <!-- Animated SVG Wave -->
+    <!-- Animated SVG Wave (now behind the text) -->
     <div class="hero-wave">
       <svg class="wave" viewBox="0 0 1440 320">
         <path fill="rgba(0,0,0,0.2)" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,154.7C384,128,480,96,576,112C672,128,768,192,864,202.7C960,213,1056,171,1152,165.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
