@@ -115,18 +115,6 @@
       outline-offset: 3px;
     }
     
-    /* Scroll Progress Bar */
-    #progressBar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: var(--primary-color);
-      width: 0%;
-      z-index: 1000;
-      transition: width 0.2s ease-out;
-    }
-    
     /* Navigation */
     nav {
       background: var(--nav-bg);
@@ -147,12 +135,7 @@
       font-size: 1.8rem;
       font-weight: 700;
       color: #fff;
-      transition: transform 0.3s;
-      /* This pushes other items (hamburger and dark mode toggle) to the right */
-      flex: 1;
-    }
-    .nav-logo:hover {
-      transform: scale(1.05);
+      /* Removed hover scaling to prevent jump */
     }
     /* Default desktop menu */
     .nav-menu {
@@ -442,9 +425,6 @@
   <!-- Skip to content link for accessibility -->
   <a href="#mainContent" class="skip-link">Skip to content</a>
   
-  <!-- Scroll Progress Bar -->
-  <div id="progressBar"></div>
-  
   <nav role="navigation">
     <div class="nav-container">
       <div class="nav-logo">Nate Fineman</div>
@@ -636,12 +616,10 @@
     carousel.addEventListener('mouseenter', () => clearInterval(autoAdvanceInterval));
     carousel.addEventListener('mouseleave', () => autoAdvanceInterval = setInterval(autoAdvance, 5000));
     
-    // Back-to-Top Button & Scroll Progress Bar
+    // Back-to-Top Button
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
       backToTop.style.display = (window.pageYOffset > 300) ? 'flex' : 'none';
-      const scrollProgress = (window.pageYOffset / (document.body.scrollHeight - window.innerHeight)) * 100;
-      document.getElementById('progressBar').style.width = scrollProgress + '%';
     });
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
