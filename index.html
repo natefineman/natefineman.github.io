@@ -46,45 +46,6 @@
   
   <!-- CSS -->
   <style>
-    /* Skip Link for Accessibility */
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      background: var(--primary-color);
-      color: #fff;
-      padding: 8px;
-      z-index: 10000;
-      transition: top 0.3s;
-    }
-    .skip-link:focus {
-      top: 0;
-    }
-    
-    /* CSS Variables for theming */
-    :root {
-      --primary-color: #0057B8;
-      --primary-dark: #003f7f;
-      --nav-bg: #003f7f;
-      --text-color: #333;
-      --bg-color: #f7f7f7;
-      --card-bg: #fafafa;
-      --newsletter-bg: #e7f0ff;
-    }
-    .dark-mode {
-      --primary-color: #4a90e2;
-      --primary-dark: #357ABD;
-      --nav-bg: #111;
-      --text-color: #fff;
-      --bg-color: #222;
-      --card-bg: #444;
-      --newsletter-bg: #555;
-    }
-    /* Extra overlay adjustment for dark mode */
-    body.dark-mode header::before {
-      background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
-    }
-    
     /* Reset & Base Styles */
     * {
       margin: 0;
@@ -93,8 +54,8 @@
     }
     body {
       font-family: 'Roboto', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
+      background: #f7f7f7;
+      color: #333;
       line-height: 1.6;
       scroll-behavior: smooth;
     }
@@ -111,13 +72,13 @@
       font-family: inherit;
     }
     a:focus, button:focus, input:focus, textarea:focus {
-      outline: 2px dashed var(--primary-color);
+      outline: 2px dashed #0057B8;
       outline-offset: 3px;
     }
     
     /* Navigation */
     nav {
-      background: var(--nav-bg);
+      background: #003f7f;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
@@ -136,7 +97,6 @@
       font-weight: 700;
       color: #fff;
     }
-    /* Default desktop menu */
     .nav-menu {
       list-style: none;
       display: flex;
@@ -153,22 +113,18 @@
     .nav-menu li a:hover {
       color: #cce0ff;
     }
-    /* Mobile Menu Toggle & Dark Mode Toggle Buttons */
-    .menu-toggle,
-    #darkModeToggle {
+    .menu-toggle {
       font-size: 1.8rem;
       color: #fff;
       cursor: pointer;
       background: none;
       margin-left: 10px;
     }
-    /* Hide hamburger icon on larger screens */
     @media (min-width: 769px) {
       .menu-toggle {
         display: none;
       }
     }
-    /* Mobile Menu: Hidden by default on small screens */
     @media (max-width: 768px) {
       .nav-menu {
         flex-direction: column;
@@ -225,7 +181,7 @@
       animation: fadeIn 1.5s ease-out;
     }
     .hero-cta a {
-      background: var(--primary-color);
+      background: #0057B8;
       color: #fff;
       padding: 14px 28px;
       border-radius: 5px;
@@ -233,7 +189,7 @@
       transition: background 0.3s, transform 0.3s;
     }
     .hero-cta a:hover {
-      background: var(--primary-dark);
+      background: #003f7f;
       transform: scale(1.05);
     }
     
@@ -254,7 +210,7 @@
     .container {
       max-width: 1100px;
       margin: 40px auto;
-      background: var(--card-bg);
+      background: #fafafa;
       padding: 40px;
       border-radius: 8px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
@@ -271,9 +227,9 @@
     }
     .section-title {
       margin-bottom: 20px;
-      color: var(--primary-color);
+      color: #0057B8;
       font-size: 2rem;
-      border-bottom: 3px solid var(--primary-color);
+      border-bottom: 3px solid #0057B8;
       padding-bottom: 8px;
     }
     
@@ -285,7 +241,7 @@
     }
     .service {
       padding: 20px;
-      background: var(--card-bg);
+      background: #fafafa;
       border: 1px solid #ddd;
       border-radius: 5px;
       transition: transform 0.3s, box-shadow 0.3s;
@@ -296,7 +252,7 @@
     }
     .service h3 {
       margin-bottom: 10px;
-      color: var(--nav-bg);
+      color: #003f7f;
     }
     
     /* Testimonials Carousel */
@@ -305,7 +261,7 @@
       overflow: hidden;
       border: 1px solid #ddd;
       border-radius: 5px;
-      background: var(--card-bg);
+      background: #fafafa;
     }
     .carousel-inner {
       display: flex;
@@ -352,10 +308,10 @@
       border-radius: 5px;
       margin-bottom: 15px;
       background: #fff;
-      color: var(--text-color);
+      color: #333;
     }
     form button {
-      background: var(--primary-color);
+      background: #0057B8;
       color: #fff;
       padding: 12px 24px;
       border-radius: 5px;
@@ -363,13 +319,13 @@
       transition: background 0.3s, transform 0.3s;
     }
     form button:hover {
-      background: var(--primary-dark);
+      background: #003f7f;
       transform: scale(1.02);
     }
     
     /* Footer */
     footer {
-      background: var(--nav-bg);
+      background: #003f7f;
       color: #fff;
       text-align: center;
       padding: 20px;
@@ -396,7 +352,7 @@
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background: var(--primary-color);
+      background: #0057B8;
       color: #fff;
       border-radius: 50%;
       width: 50px;
@@ -410,34 +366,30 @@
       z-index: 1000;
     }
     #backToTop:hover {
-      background: var(--primary-dark);
+      background: #003f7f;
       transform: scale(1.05);
     }
     
     /* Additional focus styling for interactive elements */
     button:focus, a:focus {
-      box-shadow: 0 0 0 3px var(--primary-color);
+      box-shadow: 0 0 0 3px #0057B8;
     }
   </style>
 </head>
 <body>
-  <!-- Skip to content link for accessibility -->
-  <a href="#mainContent" class="skip-link">Skip to content</a>
-  
+  <!-- Navigation -->
   <nav role="navigation">
     <div class="nav-container">
       <div class="nav-logo">Nate Fineman</div>
-      <!-- Mobile menu toggle with ARIA attributes -->
+      <!-- Mobile menu toggle -->
       <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false">&#9776;</button>
-      <!-- Dark mode toggle button -->
-      <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button>
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#contact">Contact</a></li>
-        <!-- New Digital Guide Link -->
-        <li><a href="guide.html">Digital Guide</a></li>
+        <!-- Updated Digital Guide Link -->
+        <li><a href="./guide.html">Digital Guide</a></li>
       </ul>
     </div>
   </nav>
@@ -450,7 +402,7 @@
     </div>
   </header>
   
-  <!-- Main content starts here -->
+  <!-- Main Content -->
   <main id="mainContent">
     <div class="container">
       <section id="about">
@@ -464,7 +416,7 @@
         <h2 class="section-title">Digital Guide</h2>
         <p>Discover our comprehensive digital guide to improving your 2K erg time! Perfect for rowers at all levels looking to refine their technique and boost performance. Click below to learn more and purchase your copy today.</p>
         <div style="text-align:center; margin-top:20px;">
-          <a href="guide.html" class="btn" style="padding: 14px 28px; background: var(--primary-color); color: #fff; text-decoration: none; border-radius: 5px;">View Digital Guide</a>
+          <a href="./guide.html" class="btn" style="padding: 14px 28px; background: #0057B8; color: #fff; text-decoration: none; border-radius: 5px;">View Digital Guide</a>
         </div>
       </section>
       
@@ -580,18 +532,6 @@
         }
       });
     });
-    
-    // Dark Mode Toggle with localStorage support
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    darkModeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-      darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-    });
-    if (localStorage.getItem('darkMode') === 'true') {
-      document.body.classList.add('dark-mode');
-      darkModeToggle.textContent = '☀️';
-    }
     
     // Testimonials Carousel Functionality
     const carousel = document.getElementById('carousel');
