@@ -31,25 +31,12 @@
     p {
       font-size: 1.1em;
       line-height: 1.6;
+      text-align: left;
+      margin-bottom: 20px;
     }
-    .preview-img {
-      max-width: 400px;
-      width: 100%;
-      margin: 20px auto;
-      display: block;
-    }
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
+    .payment-button {
+      text-align: center;
       margin: 20px 0;
-      background: #0057B8;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: #003f7f;
     }
     /* Newsletter section styling */
     #newsletter {
@@ -59,21 +46,27 @@
     #newsletter h2 {
       text-align: center;
       color: #0057B8;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Digital Guide Header -->
+    <!-- Guide Title and Description -->
     <h1>Improving Your 2K Erg Time: A Comprehensive Guide</h1>
-    <img src="https://via.placeholder.com/400" alt="Guide Preview" class="preview-img">
     <p>
-      Unlock your rowing recruitment potential with our step-by-step digital guide. Whether you're just starting out or looking to refine your technique, this guide is packed with actionable strategies to help you improve your 2K erg time.
+      Unlock your rowing potential with this in‑depth digital guide. Designed specifically for high school rowers aspiring to get recruited by top collegiate programs, this comprehensive resource covers proven techniques, tailored training plans, and insider strategies to improve your 2K erg time. Dive into detailed text-based content that will give you the competitive edge you need.
     </p>
     
-    <!-- Payment Button -->
-    <!-- Replace the href value with your actual payment/checkout URL -->
-    <a href="https://your-payment-checkout-link.com" class="btn">Buy Now - $19.99</a>
+    <!-- Payment Button Section -->
+    <div class="payment-button">
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="4B2DRCBFUSZTG" />
+        <input type="hidden" name="currency_code" value="USD" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+      </form>
+    </div>
     
     <!-- Newsletter Subscription Section -->
     <section id="newsletter">
@@ -90,7 +83,6 @@
             font: 14px Helvetica, Arial, sans-serif; 
             width: 100%;
           }
-          /* Add your own Mailchimp form style overrides here if needed */
         </style>
         <div id="mc_embed_signup">
           <form action="https://github.us20.list-manage.com/subscribe/post?u=43f7987b2330ca04b93f38a06&amp;id=38eec3b019&amp;f_id=00f97ceaf0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
@@ -114,7 +106,6 @@
                 <div class="response" id="mce-success-response" style="display: none;"></div>
               </div>
               <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
                 <input type="text" name="b_43f7987b2330ca04b93f38a06_38eec3b019" tabindex="-1" value="">
               </div>
               <div class="optionalParent">
