@@ -152,19 +152,6 @@
       color: #fff;
       cursor: pointer;
     }
-    #darkModeToggle {
-      background: transparent;
-      border: 1px solid #fff;
-      color: #fff;
-      padding: 4px 8px;
-      border-radius: 3px;
-      margin-left: 20px;
-      transition: background 0.3s, transform 0.3s;
-    }
-    #darkModeToggle:hover {
-      background: var(--primary-dark);
-      transform: scale(1.05);
-    }
     
     /* Hero Section */
     header {
@@ -189,6 +176,7 @@
       height: 100%;
       background: linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
       z-index: 1;
+      pointer-events: none; /* Ensures underlying elements (like the button) are clickable */
     }
     header h1 {
       position: relative;
@@ -446,7 +434,6 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><button id="darkModeToggle" aria-label="Toggle Dark Mode">Dark Mode</button></li>
       </ul>
     </div>
   </nav>
@@ -570,14 +557,7 @@
       });
     });
     
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    darkModeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
-    });
-    
-    // Testimonials Carousel
+    // Testimonials Carousel Functionality
     const carousel = document.getElementById('carousel');
     const carouselInner = carousel.querySelector('.carousel-inner');
     const carouselItems = carousel.querySelectorAll('.carousel-item');
