@@ -50,6 +50,7 @@
       line-height: 1.6;
       background: #f7f7f7;
       color: #333;
+      scroll-behavior: smooth;
     }
     a {
       text-decoration: none;
@@ -58,6 +59,7 @@
     /* Navigation */
     nav {
       background: #003f7f;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .nav-container {
       max-width: 1100px;
@@ -71,6 +73,10 @@
       font-size: 1.8rem;
       font-weight: 700;
       color: #fff;
+      transition: transform 0.3s;
+    }
+    .nav-logo:hover {
+      transform: scale(1.05);
     }
     .nav-menu {
       list-style: none;
@@ -93,74 +99,103 @@
       color: #fff;
       cursor: pointer;
     }
-    /* Hero Section */
+    /* Hero Section with Parallax */
     header {
       position: relative;
       background: url('https://i.ytimg.com/vi/2VsA6l3FQAg/maxresdefault.jpg') no-repeat center center/cover;
-      height: 60vh;
+      background-attachment: fixed;
+      height: 70vh;
       color: #fff;
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 0 20px;
+      overflow: hidden;
     }
-    header::after {
+    header::before {
       content: "";
       position: absolute;
       top: 0; 
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
       z-index: 1;
     }
     header h1 {
       position: relative;
       z-index: 2;
-      font-size: 2.8rem;
+      font-size: 3rem;
       margin-bottom: 10px;
+      animation: fadeInDown 1s ease-out;
     }
     header p {
       position: relative;
       z-index: 2;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       margin-bottom: 20px;
+      animation: fadeInUp 1s ease-out;
     }
     /* Hero CTA Button */
     .hero-cta {
       position: relative;
       z-index: 2;
+      animation: fadeIn 1.5s ease-out;
     }
     .hero-cta a {
       background: #0057B8;
       color: #fff;
-      padding: 12px 24px;
+      padding: 14px 28px;
       border-radius: 5px;
       font-weight: 700;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
     .hero-cta a:hover {
       background: #003f7f;
+      transform: scale(1.05);
+    }
+    /* Keyframes for animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     /* Main Content Container */
     .container {
       max-width: 1100px;
       margin: 40px auto;
       background: #fff;
-      padding: 30px;
-      border-radius: 5px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     }
     section {
-      margin-bottom: 40px;
+      margin-bottom: 60px;
     }
     .section-title {
       margin-bottom: 20px;
       color: #0057B8;
-      font-size: 1.8rem;
-      border-bottom: 2px solid #0057B8;
-      padding-bottom: 5px;
+      font-size: 2rem;
+      border-bottom: 3px solid #0057B8;
+      padding-bottom: 8px;
+    }
+    /* Scroll-triggered Animation */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .animate-on-scroll.in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
     /* Services Section */
     .services {
@@ -178,42 +213,16 @@
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .service:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
     .service h3 {
       margin-bottom: 10px;
       color: #003f7f;
     }
-    /* Added: Private Newsletter Service */
+    /* Newsletter Service Highlight */
     .service.newsletter {
       background: #e7f0ff;
-    }
-    /* Interactive Assessment Section */
-    #assessment {
-      text-align: center;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      background: #fafafa;
-      margin-bottom: 40px;
-    }
-    #assessment input[type="number"] {
-      width: 80%;
-      max-width: 300px;
-      margin: 10px 0;
-    }
-    #assessment button {
-      background: #0057B8;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    #assessment button:hover {
-      background: #003f7f;
     }
     /* Testimonials Carousel */
     .carousel {
@@ -221,6 +230,7 @@
       overflow: hidden;
       border: 1px solid #ddd;
       border-radius: 5px;
+      background: #f9f9f9;
     }
     .carousel-inner {
       display: flex;
@@ -228,9 +238,8 @@
     }
     .carousel-item {
       min-width: 100%;
-      padding: 20px;
+      padding: 40px 20px;
       text-align: center;
-      background: #f9f9f9;
     }
     .carousel-controls {
       position: absolute;
@@ -246,7 +255,11 @@
       color: #fff;
       padding: 10px;
       cursor: pointer;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      transition: background 0.3s;
+    }
+    .carousel-controls button:hover {
+      background: rgba(0,0,0,0.7);
     }
     /* Contact Form */
     form {
@@ -260,7 +273,7 @@
     }
     form input, form textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #ddd;
       border-radius: 5px;
       margin-bottom: 15px;
@@ -268,15 +281,16 @@
     form button {
       background: #0057B8;
       color: #fff;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-size: 1rem;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
     form button:hover {
       background: #003f7f;
+      transform: scale(1.02);
     }
     /* Footer */
     footer {
@@ -297,6 +311,30 @@
     footer .social-links a:hover {
       color: #cce0ff;
     }
+    /* Back-to-Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #0057B8;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background 0.3s, transform 0.3s;
+      z-index: 1000;
+    }
+    #backToTop:hover {
+      background: #003f7f;
+      transform: scale(1.05);
+    }
     /* Responsive Styles */
     @media (max-width: 768px) {
       .nav-menu {
@@ -313,6 +351,12 @@
       }
       .services {
         flex-direction: column;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+      header p {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -334,30 +378,30 @@
   <!-- Hero Section -->
   <header>
     <h1>Nate Fineman - Rowing Recruitment Mentor</h1>
-    <p>Helping rowers get recruited to top colleges and teams</p>
+    <p>Empowering rowers to achieve their collegiate dreams</p>
     <div class="hero-cta">
-      <a href="#contact">Get in contact now!</a>
+      <a href="#contact">Get in Touch</a>
     </div>
   </header>
   <!-- Main Content -->
   <div class="container">
     <!-- About Section -->
-    <section id="about">
+    <section id="about" class="animate-on-scroll">
       <h2 class="section-title">About Me</h2>
-      <p>Hi, I’m Nate Fineman. I was recruited to Princeton's men's heavyweight rowing team for the Class of 2028 after years of dedication to the sport. I rowed at Oakland Strokes from 8th grade all the way through senior year, where I honed my skills and learned what it takes to succeed in collegiate rowing recruitment.</p>
-      <p>Now, I’m passionate about helping other rowers navigate the recruitment process—from improving erg times and on-water technique to crafting effective communications with college coaches. My goal is to share the strategies and insights that helped me reach a top-tier program and empower aspiring rowers to achieve their college dreams.</p>
+      <p>Hi, I’m Nate Fineman. I was recruited to Princeton's men's heavyweight rowing team after years of dedication to the sport. I rowed at Oakland Strokes from 8th grade through my senior year, where I honed my skills and learned what it takes to succeed in collegiate rowing recruitment.</p>
+      <p>Now, I’m passionate about guiding other rowers through the recruitment process—from refining on-water technique to crafting effective communications with college coaches. My mission is to share the strategies and insights that propelled me to a top-tier program, empowering aspiring rowers to realize their dreams.</p>
     </section>
     <!-- Services Section -->
-    <section id="services">
+    <section id="services" class="animate-on-scroll">
       <h2 class="section-title">Services</h2>
       <div class="services">
         <div class="service">
           <h3>Personal Mentorship</h3>
-          <p>One-on-one sessions to evaluate your rowing performance, set realistic goals, and craft tailored recruitment emails.</p>
+          <p>One-on-one sessions to evaluate your rowing performance, set realistic goals, and craft tailored recruitment communications.</p>
         </div>
         <div class="service">
           <h3>Workshops & Webinars</h3>
-          <p>Interactive online sessions covering topics like contacting college coaches, improving erg times, and recruitment strategies.</p>
+          <p>Interactive sessions covering topics like contacting college coaches, improving erg times, and recruitment strategies.</p>
         </div>
         <div class="service">
           <h3>Online Resources</h3>
@@ -365,29 +409,21 @@
         </div>
         <div class="service newsletter">
           <h3>Private Newsletter Access</h3>
-          <p>Onboarding clients receive exclusive access to our private Mailchimp newsletter featuring recruitment tips, industry insights, and success stories.</p>
+          <p>Receive exclusive insights, tips, and success stories delivered straight to your inbox.</p>
         </div>
       </div>
     </section>
-    <!-- Interactive Assessment Section -->
-    <section id="assessment">
-      <h2 class="section-title">Assess Your Recruitment Readiness</h2>
-      <p>Enter your 2k erg time in seconds to get a quick recruitment score (Ideal = 380 seconds):</p>
-      <input type="number" id="ergTime" placeholder="Enter erg time in seconds" required>
-      <button id="calculateScore">Calculate Score</button>
-      <p id="scoreResult"></p>
-    </section>
     <!-- Testimonials Section -->
-    <section id="testimonials">
+    <section id="testimonials" class="animate-on-scroll">
       <h2 class="section-title">Testimonials</h2>
       <div class="carousel" id="carousel">
         <div class="carousel-inner">
           <div class="carousel-item">
-            <p>"Nate’s guidance transformed my approach to rowing recruitment. His insights on erg training and contacting coaches were exactly what I needed to improve my prospects!"</p>
+            <p>"Nate’s guidance transformed my approach to rowing recruitment. His insights on technique and coach communication made all the difference!"</p>
             <p><strong>- A Recruited Rower</strong></p>
           </div>
           <div class="carousel-item">
-            <p>"Thanks to Nate, I learned how to refine my technique and connect with college coaches. His mentorship made all the difference!"</p>
+            <p>"Thanks to Nate, I refined my training and learned how to effectively reach out to college coaches. His mentorship was invaluable!"</p>
             <p><strong>- Another Successful Recruit</strong></p>
           </div>
         </div>
@@ -398,7 +434,7 @@
       </div>
     </section>
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" class="animate-on-scroll">
       <h2 class="section-title">Contact Me</h2>
       <form action="https://formspree.io/f/mldglbzp" method="POST">
         <label for="name">Name</label>
@@ -431,6 +467,10 @@
       </a>
     </div>
   </footer>
+  <!-- Back-to-Top Button -->
+  <button id="backToTop" aria-label="Back to Top">&#8679;</button>
+  
+  <!-- JavaScript Enhancements -->
   <script>
     // Mobile Navigation Toggle
     const menuToggle = document.getElementById('mobile-menu');
@@ -475,18 +515,33 @@
       currentIndex = (currentIndex + 1) % totalItems;
       showItem(currentIndex);
     }, 5000);
-
-    // Interactive Recruitment Assessment Tool
-    document.getElementById('calculateScore').addEventListener('click', function() {
-      var ergTime = parseFloat(document.getElementById('ergTime').value);
-      if (!isNaN(ergTime) && ergTime > 0) {
-        var idealTime = 380; // Ideal 2k erg time in seconds (6:20)
-        var score = (idealTime / ergTime) * 100;
-        score = Math.round(score);
-        document.getElementById('scoreResult').innerText = "Your recruitment score is: " + score;
+    
+    // Back-to-Top Button Functionality
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.style.display = 'flex';
       } else {
-        document.getElementById('scoreResult').innerText = "Please enter a valid erg time.";
+        backToTop.style.display = 'none';
       }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Scroll-Triggered Animations using Intersection Observer
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          // Optionally, you can unobserve if you want the animation to run only once:
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.animate-on-scroll').forEach(section => {
+      observer.observe(section);
     });
   </script>
 </body>
