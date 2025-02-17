@@ -136,42 +136,41 @@
       }
     }
     
-    /* Hero Section */
+    /* Hero Section (Updated) */
     header {
       position: relative;
-      background: url('https://i.ytimg.com/vi/2VsA6l3FQAg/maxresdefault.jpg') no-repeat center center/cover;
-      background-attachment: fixed;
-      height: 70vh;
+      /* Remove the old background image and height setting */
+      background-color: #0057B8; /* optional background color */
       color: #fff;
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0 20px;
+      padding: 40px 20px;
       overflow: hidden;
     }
+    /* Disable the overlay pseudo-element */
     header::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
-      z-index: 1;
-      pointer-events: none;
+      content: none;
+    }
+    /* Headshot style */
+    .hero-headshot {
+      max-width: 200px;
+      border-radius: 50%;
+      margin: 0 auto 20px auto;
+      display: block;
     }
     header h1 {
       position: relative;
       z-index: 3;
-      font-size: 3rem;
+      font-size: 2.5rem;
       margin-bottom: 10px;
       animation: fadeInDown 1s ease-out;
     }
     header p {
       position: relative;
       z-index: 3;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-bottom: 20px;
       animation: fadeInUp 1s ease-out;
     }
@@ -181,7 +180,7 @@
       animation: fadeIn 1.5s ease-out;
     }
     .hero-cta a {
-      background: #0057B8;
+      background: #003f7f;
       color: #fff;
       padding: 14px 28px;
       border-radius: 5px;
@@ -189,7 +188,7 @@
       transition: background 0.3s, transform 0.3s;
     }
     .hero-cta a:hover {
-      background: #003f7f;
+      background: #002f60;
       transform: scale(1.05);
     }
     
@@ -394,7 +393,11 @@
     </div>
   </nav>
   
+  <!-- Hero Section with Headshot -->
   <header>
+    <!-- Insert the new headshot here -->
+    <img src="FullSizeRender.jpeg" alt="Nate Fineman Headshot" class="hero-headshot">
+    
     <h1>Nate Fineman - Rowing Recruitment Mentor</h1>
     <p>Empowering rowers to achieve their collegiate dreams</p>
     <div class="hero-cta">
