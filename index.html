@@ -23,7 +23,7 @@
   <meta name="twitter:description" content="Helping rowers get recruited to top colleges and teams.">
   <meta name="twitter:image" content="https://i.ytimg.com/vi/2VsA6l3FQAg/maxresdefault.jpg">
   
-  <!-- JSON-LD Structured Data with expanded social profiles -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "http://schema.org",
@@ -38,347 +38,16 @@
   }
   </script>
   
-  <!-- Google Fonts: Merriweather for headings, Roboto for body -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   
-  <!-- Polyfill for Intersection Observer (for older browsers) -->
-  <script async src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
-  
   <!-- CSS -->
-  <style>
-    /* Reset & Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: #f7f7f7;
-      color: #333;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-    }
-    h1, h2, h3 {
-      font-family: 'Merriweather', serif;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    button {
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    a:focus, button:focus, input:focus, textarea:focus {
-      outline: 2px dashed #0057B8;
-      outline-offset: 3px;
-    }
-    
-    /* Navigation */
-    nav {
-      background: #003f7f;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    .nav-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .nav-menu {
-      list-style: none;
-      display: flex;
-      align-items: center;
-    }
-    .nav-menu li {
-      margin-left: 20px;
-    }
-    .nav-menu li a {
-      color: #fff;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    .nav-menu li a:hover {
-      color: #cce0ff;
-    }
-    .menu-toggle {
-      font-size: 1.8rem;
-      color: #fff;
-      cursor: pointer;
-      background: none;
-      margin-left: 10px;
-    }
-    @media (min-width: 769px) {
-      .menu-toggle {
-        display: none;
-      }
-    }
-    @media (max-width: 768px) {
-      .nav-menu {
-        flex-direction: column;
-        display: none;
-        width: 100%;
-      }
-      .nav-menu.open {
-        display: flex;
-      }
-    }
-    
-    /* Hero Section (Updated) */
-    header {
-      position: relative;
-      /* Remove the old background image and height setting */
-      background-color: #0057B8; /* optional background color */
-      color: #fff;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 40px 20px;
-      overflow: hidden;
-    }
-    /* Disable the overlay pseudo-element */
-    header::before {
-      content: none;
-    }
-    /* Headshot style */
-    .hero-headshot {
-      max-width: 200px;
-      border-radius: 50%;
-      margin: 0 auto 20px auto;
-      display: block;
-    }
-    header h1 {
-      position: relative;
-      z-index: 3;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      animation: fadeInDown 1s ease-out;
-    }
-    header p {
-      position: relative;
-      z-index: 3;
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      animation: fadeInUp 1s ease-out;
-    }
-    .hero-cta {
-      position: relative;
-      z-index: 3;
-      animation: fadeIn 1.5s ease-out;
-    }
-    .hero-cta a {
-      background: #003f7f;
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 5px;
-      font-weight: 700;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .hero-cta a:hover {
-      background: #002f60;
-      transform: scale(1.05);
-    }
-    
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    /* Main Content */
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      background: #fafafa;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-    section {
-      margin-bottom: 60px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    section.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .section-title {
-      margin-bottom: 20px;
-      color: #0057B8;
-      font-size: 2rem;
-      border-bottom: 3px solid #0057B8;
-      padding-bottom: 8px;
-    }
-    
-    /* Services Section (CSS Grid) */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .service {
-      padding: 20px;
-      background: #fafafa;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .service:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    .service h3 {
-      margin-bottom: 10px;
-      color: #003f7f;
-    }
-    
-    /* Testimonials Carousel */
-    .carousel {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      background: #fafafa;
-    }
-    .carousel-inner {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-    .carousel-item {
-      min-width: 100%;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .carousel-controls {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-    }
-    .carousel-controls button {
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      padding: 10px;
-      font-size: 1.5rem;
-      transition: background 0.3s;
-    }
-    .carousel-controls button:hover {
-      background: rgba(0,0,0,0.7);
-    }
-    
-    /* Contact Form */
-    form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    form label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-bottom: 15px;
-      background: #fff;
-      color: #333;
-    }
-    form button {
-      background: #0057B8;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: background 0.3s, transform 0.3s;
-    }
-    form button:hover {
-      background: #003f7f;
-      transform: scale(1.02);
-    }
-    
-    /* Footer */
-    footer {
-      background: #003f7f;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 20px;
-    }
-    footer .social-links {
-      margin-top: 10px;
-    }
-    footer .social-links a {
-      margin: 0 10px;
-      transition: color 0.3s;
-    }
-    footer .social-links a:hover {
-      color: #cce0ff;
-    }
-    footer .disclaimer {
-      font-size: 0.75rem;
-      margin-top: 10px;
-      color: #ccc;
-    }
-    
-    /* Back-to-Top Button */
-    #backToTop {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #0057B8;
-      color: #fff;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.5rem;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: background 0.3s, transform 0.3s;
-      z-index: 1000;
-    }
-    #backToTop:hover {
-      background: #003f7f;
-      transform: scale(1.05);
-    }
-    
-    /* Additional focus styling for interactive elements */
-    button:focus, a:focus {
-      box-shadow: 0 0 0 3px #0057B8;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- Navigation -->
-  <nav role="navigation">
-    <div class="nav-container">
+  <nav class="nav" role="navigation">
+    <div class="container nav-container">
       <div class="nav-logo">Nate Fineman</div>
       <!-- Mobile menu toggle -->
       <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false">&#9776;</button>
@@ -387,105 +56,110 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#contact">Contact</a></li>
-        <!-- Updated Digital Guide Link -->
         <li><a href="guide.html">Digital Guide</a></li>
       </ul>
     </div>
   </nav>
   
-  <!-- Hero Section with Headshot -->
-  <header>
-    <!-- Insert the new headshot here -->
+  <!-- Hero Section -->
+  <header class="hero">
     <img src="FullSizeRender.jpeg" alt="Nate Fineman Headshot" class="hero-headshot">
-    
     <h1>Nate Fineman - Rowing Recruitment Mentor</h1>
     <p>Empowering rowers to achieve their collegiate dreams</p>
     <div class="hero-cta">
-      <a href="#contact">Get in Touch</a>
+      <a href="#contact" class="btn">Get in Touch</a>
     </div>
   </header>
   
   <!-- Main Content -->
-  <main id="mainContent">
-    <div class="container">
-      <section id="about">
+  <main id="main-content">
+    <div class="container card">
+      <!-- About Section -->
+      <section id="about" class="section">
         <h2 class="section-title">About Me</h2>
-        <p>Hi, I’m Nate Fineman. I was recruited to Princeton's men's heavyweight rowing team after years of dedication to the sport. I rowed at Oakland Strokes from 8th grade through my senior year, honing my skills and learning what it takes to succeed in collegiate rowing recruitment.</p>
-        <p>Now, I’m passionate about guiding other rowers through the recruitment process—from refining on-water technique to crafting effective communications with college coaches. My mission is to share the strategies and insights that propelled me to a top-tier program, empowering aspiring rowers to realize their dreams.</p>
+        <p>Hi, I'm Nate Fineman. I was recruited to Princeton's men's heavyweight rowing team after years of dedication to the sport. I rowed at Oakland Strokes from 8th grade through my senior year, honing my skills and learning what it takes to succeed in collegiate rowing recruitment.</p>
+        <p>Now, I'm passionate about guiding other rowers through the recruitment process—from refining on-water technique to crafting effective communications with college coaches. My mission is to share the strategies and insights that propelled me to a top-tier program, empowering aspiring rowers to realize their dreams.</p>
       </section>
       
-      <!-- New Digital Guide Promo Section -->
-      <section id="digital-guide">
+      <!-- Digital Guide Promo Section -->
+      <section id="digital-guide" class="section">
         <h2 class="section-title">Digital Guide</h2>
         <p>Discover our comprehensive digital guide to improving your 2K erg time! Perfect for rowers at all levels looking to refine their technique and boost performance. Click below to learn more and purchase your copy today.</p>
         <div style="text-align:center; margin-top:20px;">
-          <a href="guide.html" class="btn" style="padding: 14px 28px; background: #0057B8; color: #fff; text-decoration: none; border-radius: 5px;">View Digital Guide</a>
+          <a href="guide.html" class="btn">View Digital Guide</a>
         </div>
       </section>
       
       <!-- Services Section -->
-      <section id="services">
+      <section id="services" class="section">
         <h2 class="section-title">Services</h2>
-        <div class="services">
-          <div class="service">
+        <div class="services-grid">
+          <div class="service-card">
             <h3>Video Consultations</h3>
             <p>Connect one-on-one via video calls to receive personalized advice and strategies tailored to your unique strengths and recruitment goals.</p>
           </div>
-          <div class="service">
+          <div class="service-card">
             <h3>PDF Guides</h3>
             <p>Access professionally curated PDF guides filled with actionable tips and insights to help you navigate the recruitment process with confidence.</p>
           </div>
-          <div class="service">
-            <h3>Ongoing Mentorship &amp; Coaching</h3>
+          <div class="service-card">
+            <h3>Ongoing Mentorship</h3>
             <p>Benefit from continuous support and expert guidance through regular mentorship sessions designed to refine your skills and keep you on track toward success.</p>
           </div>
         </div>
       </section>
       
-      <!-- Testimonials Section with Carousel -->
-      <section id="testimonials">
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="section">
         <h2 class="section-title">Testimonials</h2>
-        <div class="carousel" id="carousel">
+        <div class="carousel" id="carousel" aria-label="Testimonials from clients">
           <div class="carousel-inner">
-            <div class="carousel-item">
-              <p>"Nate’s guidance transformed my approach to rowing recruitment. His insights on technique and coach communication made all the difference!"</p>
+            <div class="carousel-item" role="tabpanel" id="testimonial-1" aria-labelledby="testimonial-1-tab">
+              <p>"Nate's guidance transformed my approach to rowing recruitment. His insights on technique and coach communication made all the difference!"</p>
               <p><strong>- A Recruited Rower</strong></p>
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item" role="tabpanel" id="testimonial-2" aria-labelledby="testimonial-2-tab">
               <p>"Thanks to Nate, I refined my training and learned how to effectively reach out to college coaches. His mentorship was invaluable!"</p>
               <p><strong>- Another Successful Recruit</strong></p>
             </div>
           </div>
           <div class="carousel-controls">
-            <button id="prev" aria-label="Previous">&#10094;</button>
-            <button id="next" aria-label="Next">&#10095;</button>
+            <button id="prev" aria-label="Previous testimonial">&#10094;</button>
+            <button id="next" aria-label="Next testimonial">&#10095;</button>
           </div>
         </div>
       </section>
       
       <!-- Contact Section -->
-      <section id="contact">
+      <section id="contact" class="section">
         <h2 class="section-title">Contact Me</h2>
-        <form action="https://formspree.io/f/mldglbzp" method="POST">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required>
+        <form action="https://formspree.io/f/mldglbzp" method="POST" class="form" id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+          </div>
           
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Your email address" required>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" required>
+          </div>
           
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="How can I help you?" required></textarea>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="How can I help you?" required></textarea>
+          </div>
           
-          <button type="submit">Send Message</button>
+          <button type="submit" class="btn">Send Message</button>
         </form>
       </section>
     </div>
   </main>
   
-  <footer>
+  <!-- Footer -->
+  <footer class="footer">
     <p>&copy; 2025 Nate Fineman - Rowing Recruitment Mentor. All rights reserved.</p>
     <div class="social-links">
-      <a href="https://instagram.com/nathanfineman" target="_blank" aria-label="Instagram">
+      <a href="https://instagram.com/nathanfineman" target="_blank" rel="noopener" aria-label="Instagram">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
           <path fill="currentColor" d="M349.33,69.33H162.67C113.97,69.33,69.33,113.97,69.33,162.67v186.67
             c0,48.7,44.64,93.33,93.33,93.33h186.67c48.7,0,93.33-44.64,93.33-93.33V162.67
@@ -495,7 +169,7 @@
             s11.98-26.73,26.73-26.73S370.67,121.24,370.67,136z"/>
         </svg>
       </a>
-      <a href="https://www.linkedin.com/in/nate-fineman-291195262/" target="_blank" aria-label="LinkedIn">
+      <a href="https://www.linkedin.com/in/nate-fineman-291195262/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg width="24" height="24" viewBox="0 0 24 24">
           <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.852-3.037-1.853 
           0-2.137 1.445-2.137 2.939v5.667H9.357V9h3.414v1.561h.049c.476-.9 1.637-1.852 
@@ -510,89 +184,10 @@
     <p class="disclaimer">Disclaimer: This business is not affiliated with Oakland Strokes or Princeton University.</p>
   </footer>
   
-  <button id="backToTop" aria-label="Back to Top">&#8679;</button>
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to Top">&#8679;</button>
   
   <!-- JavaScript -->
-  <script>
-    // Mobile Navigation Toggle
-    const menuToggle = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      const expanded = navMenu.classList.contains('open');
-      menuToggle.setAttribute('aria-expanded', expanded);
-    });
-    
-    // Smooth Scrolling for Nav Links (only intercepts links starting with "#")
-    document.querySelectorAll('nav a').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if(href.startsWith("#")) {
-          e.preventDefault();
-          const targetID = href.substring(1);
-          const targetElement = document.getElementById(targetID);
-          if(targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-          if (window.innerWidth < 768) {
-            navMenu.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', false);
-          }
-        }
-      });
-    });
-    
-    // Testimonials Carousel Functionality
-    const carousel = document.getElementById('carousel');
-    const carouselInner = carousel.querySelector('.carousel-inner');
-    const carouselItems = carousel.querySelectorAll('.carousel-item');
-    const prevButton = document.getElementById('prev');
-    const nextButton = document.getElementById('next');
-    let currentIndex = 0;
-    const totalItems = carouselItems.length;
-    let autoAdvanceInterval;
-    
-    function showItem(index) {
-      carouselInner.style.transform = `translateX(-${index * 100}%)`;
-    }
-    
-    function autoAdvance() {
-      currentIndex = (currentIndex + 1) % totalItems;
-      showItem(currentIndex);
-    }
-    
-    prevButton.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-      showItem(currentIndex);
-    });
-    nextButton.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % totalItems;
-      showItem(currentIndex);
-    });
-    
-    autoAdvanceInterval = setInterval(autoAdvance, 5000);
-    carousel.addEventListener('mouseenter', () => clearInterval(autoAdvanceInterval));
-    carousel.addEventListener('mouseleave', () => autoAdvanceInterval = setInterval(autoAdvance, 5000));
-    
-    // Back-to-Top Button
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backToTop.style.display = (window.pageYOffset > 300) ? 'flex' : 'none';
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    // Section Fade-In on Scroll using Intersection Observer
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('section').forEach(section => observer.observe(section));
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
